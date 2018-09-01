@@ -2,13 +2,16 @@
   <div class="page-header">
     <img alt="Modus Logo" src="assets/images/modus-logo.png">
     <h1 class="heading">
-        Angular Exercise - Modus Recruiting
+        Angular Exercise - Modus Recruiting - Users List
     </h1>
   </div>
-  <h2>Tasks</h2>
-  <ul class="tasks-list">
-    <li *ngFor="let task of exerciseTasks;" [innerHTML]="task.description">
-
+  <h2>Users</h2>
+  <ul class="users-list">
+    <li  *ngFor="let user of users;" >
+      <span class="item">{{ user.firstName }}</span> 
+      <span class="item">{{ user.lastName }}</span>
+      <span class="item">{{ user.email }}</span>
+      <span class="item">{{ user.phone }}</span>
     </li>
   </ul>
 </div>

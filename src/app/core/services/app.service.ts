@@ -1,10 +1,16 @@
 import { Injectable } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import tasks, { Task } from '../tasks/tasks';
+import { User } from '../models/user.model';
+import {  Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+
 
 @Injectable()
 export class AppService {
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(private sanitizer: DomSanitizer, private client: HttpClient) { }
 
   /**
    * @author Ahsan Ayaz
@@ -25,5 +31,12 @@ export class AppService {
       updatedTask.description = this.sanitizer.bypassSecurityTrustHtml(updatedTask.description) as string;
       return Object.assign({}, task, updatedTask);
     });
+  }
+
+  getUsers(): Observable<User[]> {
+    return this.client.get("https://randomuser.me/api?page=1&results=10&seed=abc")
+    .map((response: Response) => response["results"]
+    .map((user: User) => new User().deserialize(user)));
+    
   }
 }
