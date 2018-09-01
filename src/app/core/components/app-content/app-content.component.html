@@ -1,6 +1,7 @@
 <div class="app-content">
   <div class="user-profile" *ngIf="isLoggedIn">
     Hey {{user.name.first}} {{user.name.last}}! Good day ahead!
+    
   </div>
   <div class="action-btn">
     <button class="app-btn" *ngIf="!isLoggedIn" (click)="login()">Login</button>

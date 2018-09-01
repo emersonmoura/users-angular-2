@@ -1,3 +1,10 @@
-<p>
-  users-list works!
-</p>
+<div>
+  <ul class="users-list">
+    <li  *ngFor="let user of users;" >
+      <span class="item">{{ user.firstName }}</span> 
+      <span class="item">{{ user.lastName }}</span>
+      <span class="item">{{ user.email }}</span>
+      <span class="item">{{ user.phone }}</span>
+    </li>
+  </ul>
+</div>
