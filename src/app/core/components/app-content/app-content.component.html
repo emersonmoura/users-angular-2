@@ -6,6 +6,7 @@
   <div class="user-profile" *ngIf="logged | async">
     Hey {{ firstName | async }} {{ lastName | async}}! Good day ahead!
   </div>
-  <ng-e-users-list *ngIf="logged | async"></ng-e-users-list>
+  <button class="app-btn" *ngIf="logged | async" routerLink="user-list">Search users</button>
+  <router-outlet></router-outlet>
  
 </div>

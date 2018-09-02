@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { select } from '@angular-redux/store';
 
 @Component({
   selector: 'ng-e-user-detail',
@@ -11,5 +12,7 @@ export class UserDetailComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  @select(state => state.session.logged) logged;
 
 }

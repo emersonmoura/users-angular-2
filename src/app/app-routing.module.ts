@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LandingComponent } from './landing/landing.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
+import { UsersListComponent } from './users-list/users-list.component';
 
 
 const routes: Routes = [{
@@ -10,14 +11,17 @@ const routes: Routes = [{
   component: LandingComponent
 }, {
   path: 'home',
-  component: HomeComponent
-},{
-  path: 'user-detail/:id',
-  component: UserDetailComponent
-}, 
-{
-  path: '**',
-  redirectTo: 'landing'
+  component: HomeComponent,
+  children: [
+    {
+      path: 'user-list',
+      component: UsersListComponent
+    },{
+      path: 'user-list/user-detail/:id',
+      component: UserDetailComponent
+   
+    },
+  ]
 }];
 
 @NgModule({
