@@ -4,7 +4,7 @@
       <button class="app-btn" *ngIf="logged | async" (click)="logout()">Logout</button>
     </div>
   <div class="user-profile" *ngIf="logged | async">
-    Hey {{ firstName | async }} {{ lastName | async}}! Good day ahead!
+    Hey {{ (user | async).firstName }} {{ (user | async).lastName}}! Good day ahead!
   </div>
   <button class="app-btn" *ngIf="logged | async" routerLink="user-list">Search users</button>
   <router-outlet *ngIf="logged | async"></router-outlet >

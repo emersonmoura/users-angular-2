@@ -8,8 +8,7 @@ import { dispatch, select } from '@angular-redux/store';
 })
 export class AppHeaderComponent {
   @select(state => state.session.logged) logged;
-  @select(state => state.session.user.lastName) lastName;
-  @select(state => state.session.user.firstName) firstName;
+  @select(state => state.session.user) user;
 
   @dispatch() login = () => ({ type: 'LOGIN' });
   @dispatch() signup = () => ({ type: 'LOGIN' });

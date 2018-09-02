@@ -5,7 +5,7 @@
   <div class="title" routerLink="/">Modus Create</div>
   <div class="profile-dropdown" *ngIf="logged | async">
     <div class="initials">
-      {{(firstName | async).charAt(0)}}{{(lastName | async).charAt(0) }}
+      {{(user | async).firstName.charAt(0)}}{{(user | async).lastName.charAt(0) }}
     </div>
   </div>
   <div class="action-btns" *ngIf="!(logged | async)">
