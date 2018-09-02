@@ -5,7 +5,6 @@ import { AppContentComponent } from './components/app-content/app-content.compon
 import { RouterModule } from '@angular/router';
 import { AppService } from './services/app.service';
 import { HttpClientModule } from '@angular/common/http';
-import { UsersListComponent } from '../users-list/users-list.component';
 import { UserDetailComponent } from '../user-detail/user-detail.component';
 
 @NgModule({
@@ -14,7 +13,7 @@ import { UserDetailComponent } from '../user-detail/user-detail.component';
     RouterModule,
     HttpClientModule
   ],
-  declarations: [AppHeaderComponent, AppContentComponent,UsersListComponent, UserDetailComponent],
+  declarations: [AppHeaderComponent, AppContentComponent, UserDetailComponent],
   exports: [AppHeaderComponent, AppContentComponent],
   providers: [
     AppService

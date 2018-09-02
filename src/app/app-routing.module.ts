@@ -15,11 +15,10 @@ const routes: Routes = [{
   children: [
     {
       path: 'user-list',
-      component: UsersListComponent
+      loadChildren: './users-list/lazy.module#LazyModule'
     },{
       path: 'user-list/user-detail/:id',
-      component: UserDetailComponent
-   
+      component: UserDetailComponent   
     },
   ]
 },
