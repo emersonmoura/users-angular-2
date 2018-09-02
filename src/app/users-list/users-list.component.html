@@ -1,10 +1,16 @@
 <div>
-  <ul class="users-list">
-    <li  *ngFor="let user of users;" >
-      <span class="item">{{ user.firstName }}</span> 
-      <span class="item">{{ user.lastName }}</span>
-      <span class="item">{{ user.email }}</span>
-      <span class="item">{{ user.phone }}</span>
-    </li>
-  </ul>
+  <table class="users-list">
+    <tr>
+      <td>First Name</td>
+      <td>Last Name</td>
+      <td>Email</td>
+      <td>Phone</td>
+    </tr>
+    <tr *ngFor="let user of users" routerLink="/user-detail/{{user.uuid}}" >  
+        <td>{{ user.firstName }}</td> 
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.phone }}</td>
+    </tr>
+  </table>
 </div>

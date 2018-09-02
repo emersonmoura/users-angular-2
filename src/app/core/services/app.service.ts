@@ -34,7 +34,7 @@ export class AppService {
   }
 
   getUsers(): Observable<User[]> {
-    return this.client.get("https://randomuser.me/api?page=1&results=10&seed=abc")
+    return this.client.get("https://randomuser.me/api?page=1&results=20&seed=modus")
     .map((response: Response) => response["results"]
     .map((user: User) => new User().deserialize(user)));
     

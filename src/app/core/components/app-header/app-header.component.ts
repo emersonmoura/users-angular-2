@@ -9,7 +9,8 @@ import { User } from '../../models/user.model';
 export class AppHeaderComponent implements OnInit {
   user: User = {
     firstName: 'Ahsan',
-    lastName: 'Ayaz'
+    lastName: 'Ayaz',
+    uuid: '4b711121-a479-4537-b28d-6ef8a3ee6400'
   };
   isLoggedIn: boolean;
   constructor() { }
