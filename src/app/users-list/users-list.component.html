@@ -6,7 +6,7 @@
       <td>Email</td>
       <td>Phone</td>
     </tr>
-    <tr *ngFor="let user of users" routerLink="user-detail/{{user.uuid}}" >  
+    <tr *ngFor="let user of users" routerLink="user-detail/{{user.uuid}}"(click)="defineCurrentUser(user)" >  
         <td>{{ user.firstName }}</td> 
         <td>{{ user.lastName }}</td>
         <td>{{ user.email }}</td>

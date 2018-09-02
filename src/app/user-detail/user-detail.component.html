@@ -1,6 +1,6 @@
-<div *ngIf="logged | async"> 
+<div> 
 <p>
-  user-detail works!
+  {{ (currentUser | async).firstName }}
 </p>
 
 <button class="app-btn" routerLink="/home/user-list">Back</button>

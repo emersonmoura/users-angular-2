@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../core/services/app.service';
 import { User } from '../core/models/user.model';
+import { dispatch } from '@angular-redux/store';
+
 
 @Component({
   selector: 'ng-e-users-list',
@@ -18,5 +20,7 @@ export class UsersListComponent implements OnInit {
       this.users = users
     });
   }
+
+   @dispatch() defineCurrentUser = (user) => ({ type: 'CURRENT_USER', user });
 
 }

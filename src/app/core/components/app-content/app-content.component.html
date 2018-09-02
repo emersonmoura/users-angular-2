@@ -1,4 +1,4 @@
-<div class="app-content">
+<div class="app-content" >
   <div class="action-btn">
       <button class="app-btn" *ngIf="!(logged | async )" (click)="login()">Login</button>
       <button class="app-btn" *ngIf="logged | async" (click)="logout()">Logout</button>
@@ -7,6 +7,6 @@
     Hey {{ firstName | async }} {{ lastName | async}}! Good day ahead!
   </div>
   <button class="app-btn" *ngIf="logged | async" routerLink="user-list">Search users</button>
-  <router-outlet></router-outlet>
+  <router-outlet *ngIf="logged | async"></router-outlet >
  
 </div>

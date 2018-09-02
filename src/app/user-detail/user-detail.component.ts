@@ -13,6 +13,6 @@ export class UserDetailComponent implements OnInit {
   ngOnInit() {
   }
 
-  @select(state => state.session.logged) logged;
+  @select(state => state.currentUser) currentUser;
 
 }
