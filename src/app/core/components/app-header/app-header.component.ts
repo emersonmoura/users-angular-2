@@ -12,6 +12,7 @@ export class AppHeaderComponent {
   @select(state => state.session.user.firstName) firstName;
 
   @dispatch() login = () => ({ type: 'LOGIN' });
+  @dispatch() signup = () => ({ type: 'LOGIN' });
 
   @dispatch() logout = () => ({ type: 'LOGOUT' });
 
