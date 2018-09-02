@@ -1,7 +1,21 @@
 <div> 
-<p>
+<div>
+    <img src="{{ (currentUser | async).picture?.large }}"/>
+  </div>
+<div>
   {{ (currentUser | async).firstName }}
-</p>
+</div>
+<div>
+  {{ (currentUser | async).lastName }}
+</div>
+
+<div>
+  {{ (currentUser | async).email }}
+</div>
+
+<div>
+  {{ (currentUser | async).phone }}
+</div>
 
 <button class="app-btn" routerLink="/home/user-list">Back</button>
 

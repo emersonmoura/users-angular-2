@@ -5,7 +5,7 @@ import { User } from '../core/models/user.model';
 const DEFAULT_USER: User = {
     firstName: 'Ahsan',
     lastName: 'Ayaz',
-    uuid: '4b711121-a479-4537-b28d-6ef8a3ee6400'
+    uuid: ''
 }
 
 const INITIAL_STATE: Session = {
@@ -37,9 +37,8 @@ export function currentUser(state: User = DEFAULT_USER, action: Action & { user 
   switch (action.type) {
     case 'CURRENT_USER':
       return action.user;
-
     case 'RESET':
-    return DEFAULT_USER;
+      return DEFAULT_USER;
 
     default:
       return state;
