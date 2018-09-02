@@ -1,11 +1,11 @@
 <div class="app-content">
   <div class="action-btn">
-      <button class="app-btn" *ngIf="!isLoggedIn" (click)="login()">Login</button>
-      <button class="app-btn" *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+      <button class="app-btn" *ngIf="!(logged | async )" (click)="login()">Login</button>
+      <button class="app-btn" *ngIf="logged | async" (click)="logout()">Logout</button>
     </div>
-  <div class="user-profile" *ngIf="isLoggedIn">
-    Hey {{user.firstName}} {{user.lastName}}! Good day ahead!
+  <div class="user-profile" *ngIf="logged | async">
+    Hey {{ firstName | async }} {{ lastName | async}}! Good day ahead!
   </div>
-  <ng-e-users-list *ngIf="isLoggedIn"></ng-e-users-list>
+  <ng-e-users-list *ngIf="logged | async"></ng-e-users-list>
  
 </div>

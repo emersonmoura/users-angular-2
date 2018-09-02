@@ -1,38 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from '../../models/user.model';
+import { Component } from '@angular/core';
+import { dispatch, select } from '@angular-redux/store';
 
 @Component({
   selector: 'ng-e-app-content',
   templateUrl: './app-content.component.html',
   styleUrls: ['./app-content.component.scss']
 })
-export class AppContentComponent implements OnInit {
-  user: User = {
-    firstName: 'Ahsan',
-    lastName: 'Ayaz',
-    uuid: '4b711121-a479-4537-b28d-6ef8a3ee6400'
-  };
-  isLoggedIn: boolean;
-  constructor() { }
+export class AppContentComponent {
+  
+  @select(state => state.session.logged) logged;
+  @select(state => state.session.user.lastName) lastName;
+  @select(state => state.session.user.firstName) firstName;
 
-  ngOnInit() {
-    this.isLoggedIn = false;
-  }
+  @dispatch() login = () => ({ type: 'LOGIN' });
 
-  /**
-   * @author Ahsan Ayaz
-   * @desc Logs the user in
-   */
-  login() {
-    this.isLoggedIn = true;
-  }
-
-  /**
-   * @author Ahsan Ayaz
-   * @desc Logs the user out
-   */
-  logout() {
-    this.isLoggedIn = false;
-  }
+  @dispatch() logout = () => ({ type: 'LOGOUT' });
 
 }
