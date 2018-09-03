@@ -1,5 +1,6 @@
 <div>
-  <table class="users-list">
+  <p *ngIf="!users">Loading...</p>
+  <table class="users-list" *ngIf="users">
     <tr>
       <td>First Name</td>
       <td>Last Name</td>
