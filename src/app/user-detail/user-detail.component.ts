@@ -24,7 +24,7 @@ export class UserDetailComponent implements OnInit {
 
   ngOnInit() {
     this.subOne = this.currentUser$.subscribe(user => {
-      if(!user || !user.login){
+      if(!user || !user.uuid){
         this.subTwo = this.loadUserWhenRequired();
       }
     });
@@ -34,7 +34,7 @@ export class UserDetailComponent implements OnInit {
     this.subTwo = this.route.params.subscribe(params => {
       var id = params['id']; 
       this.appService.getUsers().subscribe((users: Array<User>) => {
-        var user = users.find((user: User)=>  user.uuid == id);
+        var user = users.filter((user: User) => user).find((user: User) =>  user.uuid == id);
         if(user){
           this.ngRedux.dispatch({ type: USER_TYPES.CURRENT_USER, user });
         }
