@@ -7,10 +7,7 @@ describe('AppService', () => {
   let injector: TestBed;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [AppService],
-      imports: [HttpClientTestingModule]
-    });
+    configureTestingModule();
     injector = getTestBed();
     httpMock = injector.get(HttpTestingController);
   });
@@ -22,4 +19,12 @@ describe('AppService', () => {
   afterEach(() => {
     httpMock.verify();
   });
+
 });
+
+const configureTestingModule = () => {
+  TestBed.configureTestingModule({
+    providers: [AppService],
+    imports: [HttpClientTestingModule]
+  });
+}

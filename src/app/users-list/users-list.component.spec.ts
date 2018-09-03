@@ -1,20 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppService } from '../core/services/app.service';
 import { UsersListComponent } from './users-list.component';
-import { Observable } from 'rxjs/Observable';
-import { User } from '../core/models/user.model';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs/observable/of';
 import { createUser } from '../test.fixtures'
-
-class MockAppService {
-
-  users : Observable<User[]> =  of(new Array<User>());
-
-  getUsers(): Observable<User[]> {
-    return this.users;
-  }
-}
+import { MockAppService } from '../test.mocking'
 
 describe('UsersListComponent', () => {
   let appServiceMock = new MockAppService();

@@ -3,25 +3,12 @@ import { RouterTestingModule } from '@angular/router/testing';
 import {MockNgRedux, NgReduxTestingModule} from '@angular-redux/store/lib/testing';
 import { AppService } from '../core/services/app.service';
 import { UserDetailComponent } from './user-detail.component';
-import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
-import { User } from '../core/models/user.model';
 import { ActivatedRoute } from '@angular/router';
 import { USER_TYPES } from '../store/model'
 import { createUser } from '../test.fixtures'
+import { MockAppService, MockRouteParam } from '../test.mocking'
 
-class MockAppService {
-
-  users : Observable<User[]> =  of(new Array<User>());
-
-  getUsers(): Observable<User[]> {
-    return this.users;
-  }
-}
-
-class MockRouteParam {
-    params = of({});
-}
 
 describe('UserDetailComponent', () => {
 
