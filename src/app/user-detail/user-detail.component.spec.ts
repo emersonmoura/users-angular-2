@@ -7,6 +7,8 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { User } from '../core/models/user.model';
 import { ActivatedRoute } from '@angular/router';
+import { USER_TYPES } from '../store/model'
+import { createUser } from '../test.fixtures'
 
 class MockAppService {
 
@@ -21,15 +23,6 @@ class MockRouteParam {
     params = of({});
 }
 
-const user = (uuid: string = ''): User => {
-  return {
-    firstName: 'Wilbert',
-    lastName: 'Ayaz',
-    uuid: uuid,
-    login: 'login'
-  }
-}
-
 describe('UserDetailComponent', () => {
 
   let appServiceMock = new MockAppService();
@@ -37,23 +30,8 @@ describe('UserDetailComponent', () => {
   const uuid = '9e2d6e63-08d1-4020-a570-8e2b2e2e1ce5'
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ UserDetailComponent ],
-      imports: [RouterTestingModule, NgReduxTestingModule],
-      providers: [MockNgRedux]
-    })
-
-    TestBed.overrideComponent(UserDetailComponent, {
-      set: {
-        providers: [
-          { provide: AppService, useValue: appServiceMock },
-          { provide: ActivatedRoute, useValue: routeParamMock }
-        ]
-      }
-    });
-
-    MockNgRedux.reset();
-    
+    configureTestingModule()
+    configureMocks(appServiceMock, routeParamMock);
   }));
 
   it('should create', () => {
@@ -67,18 +45,18 @@ describe('UserDetailComponent', () => {
     const spy = spyOn(MockNgRedux.mockInstance, 'dispatch');
     const fixture = TestBed.createComponent(UserDetailComponent);
     const app = fixture.debugElement.componentInstance;
-    let expectUser = user(uuid)
+    let expectUser = createUser(uuid)
     routeParamMock.params = of({id: uuid})
     appServiceMock.users = of([expectUser])
 
     const selectorStub = MockNgRedux.getSelectorStub(['currentUser']);
-    selectorStub.next(user(null));
+    selectorStub.next(createUser(null));
     selectorStub.complete();
 
     app.ngOnInit()
         
     expect(spy).toHaveBeenCalledWith({
-      type: 'CURRENT_USER',
+      type: USER_TYPES.CURRENT_USER,
       user: expectUser,
     });
   });
@@ -88,7 +66,7 @@ describe('UserDetailComponent', () => {
     const fixture = TestBed.createComponent(UserDetailComponent);
     const app = fixture.debugElement.componentInstance;
     
-    let expectUser = user(uuid)
+    let expectUser = createUser(uuid)
     routeParamMock.params = of({id: uuid})
     appServiceMock.users = of([expectUser])
 
@@ -99,7 +77,7 @@ describe('UserDetailComponent', () => {
     app.ngOnInit()
         
     expect(spy).toHaveBeenCalledWith({
-      type: 'CURRENT_USER',
+      type: USER_TYPES.CURRENT_USER,
       user: expectUser,
     });
   });
@@ -127,7 +105,7 @@ describe('UserDetailComponent', () => {
     app.appService = service;
 
     const selectorStub = MockNgRedux.getSelectorStub(['currentUser']);
-    selectorStub.next(user());
+    selectorStub.next(createUser());
     selectorStub.complete();
 
     app.currentUser$.subscribe(current => {
@@ -137,3 +115,24 @@ describe('UserDetailComponent', () => {
 
 
 });
+
+const configureTestingModule = () => {
+  TestBed.configureTestingModule({
+    declarations: [ UserDetailComponent ],
+    imports: [RouterTestingModule, NgReduxTestingModule],
+    providers: [MockNgRedux]
+  })
+}
+
+const configureMocks = (appServiceMock, routeParamMock) => {
+  TestBed.overrideComponent(UserDetailComponent, {
+    set: {
+      providers: [
+        { provide: AppService, useValue: appServiceMock },
+        { provide: ActivatedRoute, useValue: routeParamMock }
+      ]
+    }
+  });
+  MockNgRedux.reset();
+}
+
