@@ -1,22 +1,28 @@
 <div class="user-detal"> 
-<div>
+<div class="photo">
     <img src="{{ (currentUser$ | async).picture?.large }}"/>
   </div>
-<div>
-  {{ (currentUser$ | async).firstName }}
-</div>
-<div>
-  {{ (currentUser$ | async).lastName }}
+  <div class="desc">
+    <div>
+      <span>First Name:</span>
+      {{ (currentUser$ | async).firstName }}
+    </div>
+    <div>
+      <span>Last Name:</span>
+      {{ (currentUser$ | async).lastName }}
+    </div>
+
+    <div>
+      <span>Email:</span>
+      {{ (currentUser$ | async).email }}
+    </div>
+
+    <div>
+      <span>phone:</span>
+      {{ (currentUser$ | async).phone }}
+    </div>
 </div>
 
-<div>
-  {{ (currentUser$ | async).email }}
-</div>
-
-<div>
-  {{ (currentUser$ | async).phone }}
 </div>
 
 <button class="app-btn" routerLink="/home/user-list">Back</button>
-
-</div>
