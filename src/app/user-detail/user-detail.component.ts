@@ -5,6 +5,8 @@ import { NgRedux } from '@angular-redux/store';
 import { AppState } from '../store/model';
 import { AppService } from '../core/services/app.service';
 import { User } from '../core/models/user.model';
+import { USER_TYPES } from '../store/model'
+
 
 @Component({
   selector: 'ng-e-user-detail',
@@ -17,13 +19,12 @@ export class UserDetailComponent implements OnInit {
               private ngRedux: NgRedux<AppState>,
               private appService: AppService) { }
 
-  id: string;
   private subOne: any;
   private subTwo: any;
 
   ngOnInit() {
-    this.subOne = this.currentUser.subscribe(user => {
-      if(!user.login){
+    this.subOne = this.currentUser$.subscribe(user => {
+      if(!user || !user.login){
         this.subTwo = this.loadUserWhenRequired();
       }
     });
@@ -31,17 +32,17 @@ export class UserDetailComponent implements OnInit {
 
   private loadUserWhenRequired = () => {
     this.subTwo = this.route.params.subscribe(params => {
-      this.id = params['id']; 
+      var id = params['id']; 
       this.appService.getUsers().subscribe((users: Array<User>) => {
-        var user = users.find((user: User)=>  user.uuid == this.id);
+        var user = users.find((user: User)=>  user.uuid == id);
         if(user){
-          this.ngRedux.dispatch({ type: 'CURRENT_USER', user });
+          this.ngRedux.dispatch({ type: USER_TYPES.CURRENT_USER, user });
         }
       });
    });
   }
 
-  @select(state => state.currentUser) currentUser;
+  @select(['currentUser']) currentUser$;
 
   ngOnDestroy() {
     if(this.subOne) this.subOne.unsubscribe();

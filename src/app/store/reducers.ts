@@ -1,6 +1,7 @@
 import { combineReducers, Action } from 'redux';
 import { Session } from '../core/models/session.model';
 import { User } from '../core/models/user.model';
+import { SESSION_TYPES, USER_TYPES } from './model'
 
 const DEFAULT_USER: User = {
     firstName: 'Ahsan',
@@ -16,13 +17,13 @@ const INITIAL_STATE: Session = {
 
 export function session(state: Session = INITIAL_STATE, action: Action) : Session {
   switch (action.type) {
-    case 'LOGIN':
+    case SESSION_TYPES.LOGIN:
     return {
         user: DEFAULT_USER,
         logged: true
       };
 
-    case 'LOGOUT':
+    case SESSION_TYPES.LOGOUT:
       return {
         user: DEFAULT_USER,
         logged: false
@@ -35,9 +36,9 @@ export function session(state: Session = INITIAL_STATE, action: Action) : Sessio
 
 export function currentUser(state: User = DEFAULT_USER, action: Action & { user }) : User {
   switch (action.type) {
-    case 'CURRENT_USER':
+    case USER_TYPES.CURRENT_USER:
       return action.user;
-    case 'RESET':
+    case USER_TYPES.RESET:
       return DEFAULT_USER;
 
     default:

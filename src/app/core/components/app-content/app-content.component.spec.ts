@@ -4,9 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppContentComponent } from './app-content.component';
 
 describe('AppContentComponent', () => {
-  let component: AppContentComponent;
-  let fixture: ComponentFixture<AppContentComponent>;
-
+  
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ AppContentComponent ],

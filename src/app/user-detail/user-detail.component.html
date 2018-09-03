@@ -1,20 +1,20 @@
 <div> 
 <div>
-    <img src="{{ (currentUser | async).picture?.large }}"/>
+    <img src="{{ (currentUser$ | async).picture?.large }}"/>
   </div>
 <div>
-  {{ (currentUser | async).firstName }}
+  {{ (currentUser$ | async).firstName }}
 </div>
 <div>
-  {{ (currentUser | async).lastName }}
-</div>
-
-<div>
-  {{ (currentUser | async).email }}
+  {{ (currentUser$ | async).lastName }}
 </div>
 
 <div>
-  {{ (currentUser | async).phone }}
+  {{ (currentUser$ | async).email }}
+</div>
+
+<div>
+  {{ (currentUser$ | async).phone }}
 </div>
 
 <button class="app-btn" routerLink="/home/user-list">Back</button>
