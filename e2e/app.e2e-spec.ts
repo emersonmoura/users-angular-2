@@ -9,6 +9,6 @@ describe('ng-exercise App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to ng-e!');
+    expect(page.getParagraphText()).toEqual('Welcome');
   });
 });

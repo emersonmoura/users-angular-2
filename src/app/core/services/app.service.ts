@@ -10,7 +10,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AppService {
-  constructor(private sanitizer: DomSanitizer, private client: HttpClient) { }
+  constructor(private sanitizer: DomSanitizer, private http: HttpClient) { }
 
   /**
    * @author Ahsan Ayaz
@@ -34,7 +34,7 @@ export class AppService {
   }
 
   getUsers(): Observable<User[]> {
-    return this.client.get("https://randomuser.me/api?page=1&results=20&seed=modus")
+    return this.http.get("https://randomuser.me/api?page=1&results=20&seed=modus")
     .map((response: Response) => response["results"]
     .map((user: User) => new User().deserialize(user)));
     

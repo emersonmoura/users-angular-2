@@ -1,6 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { AppService } from '../core/services/app.service';
+import { Observable } from 'rxjs/Observable';
 import { LandingComponent } from './landing.component';
+import { User } from '../core/models/user.model';
+
+class MockAppService {
+  getUsers(): Observable<User[]> {
+    return Observable.of(new Array<User>());
+  }
+}
 
 describe('LandingComponent', () => {
   let component: LandingComponent;
@@ -10,16 +18,19 @@ describe('LandingComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ LandingComponent ]
     })
-    .compileComponents();
+    TestBed.overrideComponent(LandingComponent, {
+      set: {
+        providers: [
+          { provide: AppService, useClass: MockAppService }
+        ]
+      }
+    });
+    
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(LandingComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
   it('should create', () => {
-    expect(component).toBeTruthy();
+    const fixture = TestBed.createComponent(LandingComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app).toBeTruthy();
   });
 });

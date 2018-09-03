@@ -3,8 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LandingComponent } from './landing/landing.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
-import { UsersListComponent } from './users-list/users-list.component';
-
 
 const routes: Routes = [{
   path: 'landing',

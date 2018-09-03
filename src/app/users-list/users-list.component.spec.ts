@@ -1,6 +1,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { AppService } from '../core/services/app.service';
 import { UsersListComponent } from './users-list.component';
+import { Observable } from 'rxjs/Observable';
+import { User } from '../core/models/user.model';
+import { RouterTestingModule } from '@angular/router/testing';
+
+
+
+class MockAppService {
+  getUsers(): Observable<User[]> {
+    return Observable.of(new Array<User>());
+  }
+}
 
 describe('UsersListComponent', () => {
   let component: UsersListComponent;
@@ -8,18 +19,22 @@ describe('UsersListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UsersListComponent ]
+      declarations: [ UsersListComponent ],
+      imports : [RouterTestingModule]
     })
-    .compileComponents();
+    TestBed.overrideComponent(UsersListComponent, {
+      set: {
+        providers: [
+          { provide: AppService, useClass: MockAppService }
+        ]
+      }
+    });
+  
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(UsersListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
   it('should create', () => {
-    expect(component).toBeTruthy();
+    const fixture = TestBed.createComponent(UsersListComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app).toBeTruthy();
   });
 });
